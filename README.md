@@ -1,2 +1,2 @@
 # ubuntu-base
-Ubuntu base Docker images for JARVICE
+Ubuntu 16.04 base Docker image for JARVICE

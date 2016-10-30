@@ -1,20 +1,13 @@
-FROM ubuntu:trusty
+FROM ubuntu:16.04
 MAINTAINER Nimbix, Inc.
-
-# upstart fixes
-# init-fake.conf from https://raw.githubusercontent.com/tianon/dockerfiles/master/sbin-init/ubuntu/upstart/14.04/init-fake.conf
-ADD init-fake.conf /etc/init/fake-container-events.conf
-RUN rm /usr/sbin/policy-rc.d; \
-	rm /sbin/initctl; dpkg-divert --rename --remove /sbin/initctl
-RUN echo '# /lib/init/fstab: cleared out for bare-bones Docker' >/lib/init/fstab
 
 # base OS
 ENV DEBIAN_FRONTEND noninteractive
 ADD https://github.com/nimbix/image-common/archive/master.zip /tmp/nimbix.zip
 WORKDIR /tmp
-RUN apt-get update && apt-get -y install zip unzip && unzip nimbix.zip && rm -f nimbix.zip
+RUN apt-get update && apt-get -y install sudo zip unzip && unzip nimbix.zip && rm -f nimbix.zip
 RUN /tmp/image-common-master/setup-nimbix.sh
-RUN touch /etc/init.d/systemd-logind && apt-get update && apt-get -y install xz-utils openssh-server libpam-systemd libmlx4-1 libmlx5-1 iptables infiniband-diags && apt-get clean && locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
+RUN touch /etc/init.d/systemd-logind && apt-get update && apt-get -y install xz-utils vim openssh-server libpam-systemd libmlx4-1 libmlx5-1 iptables infiniband-diags && apt-get clean && locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 # Nimbix JARVICE emulation
 EXPOSE 22
