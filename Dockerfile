@@ -14,7 +14,7 @@ ADD https://github.com/nimbix/image-common/archive/master.zip /tmp/nimbix.zip
 WORKDIR /tmp
 RUN apt-get update && apt-get -y install zip unzip && unzip nimbix.zip && rm -f nimbix.zip
 RUN /tmp/image-common-master/setup-nimbix.sh
-RUN touch /etc/init.d/systemd-logind && apt-get update && apt-get -y install xz-utils openssh-server libpam-systemd libmlx4-1 libmlx5-1 infiniband-diags && apt-get clean && locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
+RUN touch /etc/init.d/systemd-logind && apt-get update && apt-get -y install xz-utils openssh-server libpam-systemd libmlx4-1 libmlx5-1 iptables infiniband-diags && apt-get clean && locale-gen en_US.UTF-8 && update-locale LANG=en_US.UTF-8
 
 # Nimbix JARVICE emulation
 EXPOSE 22
