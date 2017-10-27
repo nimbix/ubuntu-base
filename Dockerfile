@@ -1,6 +1,9 @@
 FROM ubuntu:trusty
 MAINTAINER Nimbix, Inc.
 
+# DEPRECATED:  Please use https://github.com/nimbix/image-common to set up
+#   your app images for JARVICE.
+
 # upstart fixes
 # init-fake.conf from https://raw.githubusercontent.com/tianon/dockerfiles/master/sbin-init/ubuntu/upstart/14.04/init-fake.conf
 ADD init-fake.conf /etc/init/fake-container-events.conf
